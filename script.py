@@ -1,13 +1,14 @@
 import gspread
 
 # サービスアカウントの認証
+#google cloudの秘密鍵をJsonファイルでダウンロードし、filenameに入れる
 gc = gspread.service_account(filename="")
 
 # ユーザーからファイル名の入力を受け取る
-daily_report_filename = input("日報のファイル名（例: 2025.3 日報renew）を入力してください:　")
-copy_file_filename = input("収支のファイル名（例: コピー収支2025.3）を入力してください: ")
+daily_report_filename = input("日報のファイル名（例: 2025.3 日報）を入力してください:　")
+copy_file_filename = input("収支のファイル名（例: 収支2025.3）を入力してください: ")
 
-# 指定されたファイル名でスプレッドシートを開く（フォルダIDはそのまま利用）
+# 指定されたファイル名でスプレッドシートを開く
 sh = gc.open(daily_report_filename, folder_id="")
 # 「出金管理表」シートからデータを抽出
 ws_outmoney = sh.worksheet("出金管理表")
